@@ -1,0 +1,617 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D233A0152EF3106F006F66B8 /* nouriApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0142EF3106F006F66B8 /* nouriApp.swift */; };
+		D233A0172EF3106F006F66B8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0162EF3106F006F66B8 /* ContentView.swift */; };
+		D233A0192EF31071006F66B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D233A0182EF31071006F66B8 /* Assets.xcassets */; };
+		D233A01D2EF31071006F66B8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D233A01C2EF31071006F66B8 /* Preview Assets.xcassets */; };
+		D233A0272EF31072006F66B8 /* nouriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0262EF31072006F66B8 /* nouriTests.swift */; };
+		D233A0312EF31072006F66B8 /* nouriUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0302EF31072006F66B8 /* nouriUITests.swift */; };
+		D233A0332EF31072006F66B8 /* nouriUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0322EF31072006F66B8 /* nouriUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D233A0232EF31072006F66B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D233A0092EF3106E006F66B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D233A0102EF3106F006F66B8;
+			remoteInfo = nouri;
+		};
+		D233A02D2EF31072006F66B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D233A0092EF3106E006F66B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D233A0102EF3106F006F66B8;
+			remoteInfo = nouri;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D233A0112EF3106F006F66B8 /* nouri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nouri.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D233A0142EF3106F006F66B8 /* nouriApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nouriApp.swift; sourceTree = "<group>"; };
+		D233A0162EF3106F006F66B8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D233A0182EF31071006F66B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D233A01A2EF31071006F66B8 /* nouri.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = nouri.entitlements; sourceTree = "<group>"; };
+		D233A01C2EF31071006F66B8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D233A0222EF31072006F66B8 /* nouriTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nouriTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D233A0262EF31072006F66B8 /* nouriTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nouriTests.swift; sourceTree = "<group>"; };
+		D233A02C2EF31072006F66B8 /* nouriUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nouriUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D233A0302EF31072006F66B8 /* nouriUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nouriUITests.swift; sourceTree = "<group>"; };
+		D233A0322EF31072006F66B8 /* nouriUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nouriUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D233A00E2EF3106F006F66B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D233A01F2EF31072006F66B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D233A0292EF31072006F66B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D233A0082EF3106E006F66B8 = {
+			isa = PBXGroup;
+			children = (
+				D233A0132EF3106F006F66B8 /* nouri */,
+				D233A0252EF31072006F66B8 /* nouriTests */,
+				D233A02F2EF31072006F66B8 /* nouriUITests */,
+				D233A0122EF3106F006F66B8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D233A0122EF3106F006F66B8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D233A0112EF3106F006F66B8 /* nouri.app */,
+				D233A0222EF31072006F66B8 /* nouriTests.xctest */,
+				D233A02C2EF31072006F66B8 /* nouriUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D233A0132EF3106F006F66B8 /* nouri */ = {
+			isa = PBXGroup;
+			children = (
+				D233A0142EF3106F006F66B8 /* nouriApp.swift */,
+				D233A0162EF3106F006F66B8 /* ContentView.swift */,
+				D233A0182EF31071006F66B8 /* Assets.xcassets */,
+				D233A01A2EF31071006F66B8 /* nouri.entitlements */,
+				D233A01B2EF31071006F66B8 /* Preview Content */,
+			);
+			path = nouri;
+			sourceTree = "<group>";
+		};
+		D233A01B2EF31071006F66B8 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D233A01C2EF31071006F66B8 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D233A0252EF31072006F66B8 /* nouriTests */ = {
+			isa = PBXGroup;
+			children = (
+				D233A0262EF31072006F66B8 /* nouriTests.swift */,
+			);
+			path = nouriTests;
+			sourceTree = "<group>";
+		};
+		D233A02F2EF31072006F66B8 /* nouriUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D233A0302EF31072006F66B8 /* nouriUITests.swift */,
+				D233A0322EF31072006F66B8 /* nouriUITestsLaunchTests.swift */,
+			);
+			path = nouriUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D233A0102EF3106F006F66B8 /* nouri */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D233A0362EF31072006F66B8 /* Build configuration list for PBXNativeTarget "nouri" */;
+			buildPhases = (
+				D233A00D2EF3106F006F66B8 /* Sources */,
+				D233A00E2EF3106F006F66B8 /* Frameworks */,
+				D233A00F2EF3106F006F66B8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = nouri;
+			productName = nouri;
+			productReference = D233A0112EF3106F006F66B8 /* nouri.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D233A0212EF31072006F66B8 /* nouriTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D233A0392EF31072006F66B8 /* Build configuration list for PBXNativeTarget "nouriTests" */;
+			buildPhases = (
+				D233A01E2EF31072006F66B8 /* Sources */,
+				D233A01F2EF31072006F66B8 /* Frameworks */,
+				D233A0202EF31072006F66B8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D233A0242EF31072006F66B8 /* PBXTargetDependency */,
+			);
+			name = nouriTests;
+			productName = nouriTests;
+			productReference = D233A0222EF31072006F66B8 /* nouriTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D233A02B2EF31072006F66B8 /* nouriUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D233A03C2EF31072006F66B8 /* Build configuration list for PBXNativeTarget "nouriUITests" */;
+			buildPhases = (
+				D233A0282EF31072006F66B8 /* Sources */,
+				D233A0292EF31072006F66B8 /* Frameworks */,
+				D233A02A2EF31072006F66B8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D233A02E2EF31072006F66B8 /* PBXTargetDependency */,
+			);
+			name = nouriUITests;
+			productName = nouriUITests;
+			productReference = D233A02C2EF31072006F66B8 /* nouriUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D233A0092EF3106E006F66B8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					D233A0102EF3106F006F66B8 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					D233A0212EF31072006F66B8 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = D233A0102EF3106F006F66B8;
+					};
+					D233A02B2EF31072006F66B8 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = D233A0102EF3106F006F66B8;
+					};
+				};
+			};
+			buildConfigurationList = D233A00C2EF3106F006F66B8 /* Build configuration list for PBXProject "nouri" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D233A0082EF3106E006F66B8;
+			productRefGroup = D233A0122EF3106F006F66B8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D233A0102EF3106F006F66B8 /* nouri */,
+				D233A0212EF31072006F66B8 /* nouriTests */,
+				D233A02B2EF31072006F66B8 /* nouriUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D233A00F2EF3106F006F66B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D233A01D2EF31071006F66B8 /* Preview Assets.xcassets in Resources */,
+				D233A0192EF31071006F66B8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D233A0202EF31072006F66B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D233A02A2EF31072006F66B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D233A00D2EF3106F006F66B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D233A0172EF3106F006F66B8 /* ContentView.swift in Sources */,
+				D233A0152EF3106F006F66B8 /* nouriApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D233A01E2EF31072006F66B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D233A0272EF31072006F66B8 /* nouriTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D233A0282EF31072006F66B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D233A0332EF31072006F66B8 /* nouriUITestsLaunchTests.swift in Sources */,
+				D233A0312EF31072006F66B8 /* nouriUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D233A0242EF31072006F66B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D233A0102EF3106F006F66B8 /* nouri */;
+			targetProxy = D233A0232EF31072006F66B8 /* PBXContainerItemProxy */;
+		};
+		D233A02E2EF31072006F66B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D233A0102EF3106F006F66B8 /* nouri */;
+			targetProxy = D233A02D2EF31072006F66B8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D233A0342EF31072006F66B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D233A0352EF31072006F66B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		D233A0372EF31072006F66B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = nouri/nouri.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"nouri/Preview Content\"";
+				DEVELOPMENT_TEAM = ZJLZPA9W84;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 12.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.louc.nouri;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D233A0382EF31072006F66B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = nouri/nouri.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"nouri/Preview Content\"";
+				DEVELOPMENT_TEAM = ZJLZPA9W84;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 12.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.louc.nouri;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D233A03A2EF31072006F66B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZJLZPA9W84;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 12.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.louc.nouriTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nouri.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/nouri";
+			};
+			name = Debug;
+		};
+		D233A03B2EF31072006F66B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZJLZPA9W84;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 12.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.louc.nouriTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nouri.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/nouri";
+			};
+			name = Release;
+		};
+		D233A03D2EF31072006F66B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZJLZPA9W84;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 12.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.louc.nouriUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = nouri;
+			};
+			name = Debug;
+		};
+		D233A03E2EF31072006F66B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZJLZPA9W84;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 12.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.louc.nouriUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = nouri;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D233A00C2EF3106F006F66B8 /* Build configuration list for PBXProject "nouri" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D233A0342EF31072006F66B8 /* Debug */,
+				D233A0352EF31072006F66B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D233A0362EF31072006F66B8 /* Build configuration list for PBXNativeTarget "nouri" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D233A0372EF31072006F66B8 /* Debug */,
+				D233A0382EF31072006F66B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D233A0392EF31072006F66B8 /* Build configuration list for PBXNativeTarget "nouriTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D233A03A2EF31072006F66B8 /* Debug */,
+				D233A03B2EF31072006F66B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D233A03C2EF31072006F66B8 /* Build configuration list for PBXNativeTarget "nouriUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D233A03D2EF31072006F66B8 /* Debug */,
+				D233A03E2EF31072006F66B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D233A0092EF3106E006F66B8 /* Project object */;
+}
