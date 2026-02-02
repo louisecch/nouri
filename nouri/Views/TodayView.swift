@@ -103,33 +103,32 @@ struct MealCardView: View {
         }) {
             VStack(spacing: 0) {
                 // Image area
-                ZStack {
-                    if let meal = meal,
-                       let imageFileName = meal.imageFileName,
-                       let image = persistenceManager.loadImage(fileName: imageFileName) {
-                        #if canImport(UIKit)
-                        Image(uiImage: image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(height: 140)
-                            .clipped()
-                        #elseif canImport(AppKit)
-                        Image(nsImage: image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(height: 140)
-                            .clipped()
-                        #endif
-                    } else {
-                        // Placeholder
-                        ZStack {
+                GeometryReader { geometry in
+                    ZStack {
+                        if let meal = meal,
+                           let imageFileName = meal.imageFileName,
+                           let image = persistenceManager.loadImage(fileName: imageFileName) {
+                            #if canImport(UIKit)
+                            Image(uiImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: geometry.size.width, height: geometry.size.height)
+                                .clipped()
+                            #elseif canImport(AppKit)
+                            Image(nsImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: geometry.size.width, height: geometry.size.height)
+                                .clipped()
+                            #endif
+                        } else {
+                            // Placeholder
                             Rectangle()
                                 #if canImport(UIKit)
                                 .fill(Color(.systemGray6))
                                 #else
                                 .fill(Color(NSColor.separatorColor))
                                 #endif
-                                .frame(height: 140)
                             
                             VStack(spacing: 8) {
                                 Image(systemName: "camera.fill")
@@ -144,7 +143,7 @@ struct MealCardView: View {
                     }
                 }
                 .frame(height: 140)
-                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                .cornerRadius(12)
                 
                 // Meal label
                 Text(mealType.displayName)
