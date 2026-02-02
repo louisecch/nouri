@@ -14,6 +14,15 @@
 		D233A0272EF31072006F66B8 /* nouriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0262EF31072006F66B8 /* nouriTests.swift */; };
 		D233A0312EF31072006F66B8 /* nouriUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0302EF31072006F66B8 /* nouriUITests.swift */; };
 		D233A0332EF31072006F66B8 /* nouriUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0322EF31072006F66B8 /* nouriUITestsLaunchTests.swift */; };
+		D233A0402EF31400006F66B8 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A03F2EF31400006F66B8 /* MealType.swift */; };
+		D233A0422EF31401006F66B8 /* MealEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0412EF31401006F66B8 /* MealEntry.swift */; };
+		D233A0442EF31402006F66B8 /* MealPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0432EF31402006F66B8 /* MealPersistenceManager.swift */; };
+		D233A0462EF31403006F66B8 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0452EF31403006F66B8 /* TodayView.swift */; };
+		D233A0482EF31404006F66B8 /* MotivationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0472EF31404006F66B8 /* MotivationView.swift */; };
+		D233A04A2EF31405006F66B8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0492EF31405006F66B8 /* SettingsView.swift */; };
+		D233A04E2EF31500006F66B8 /* CrossPlatformImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A04D2EF31500006F66B8 /* CrossPlatformImage.swift */; };
+		D233A0502EF31501006F66B8 /* CrossPlatformColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A04F2EF31501006F66B8 /* CrossPlatformColor.swift */; };
+		D233A0522EF31600006F66B8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0512EF31600006F66B8 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +54,15 @@
 		D233A02C2EF31072006F66B8 /* nouriUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nouriUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D233A0302EF31072006F66B8 /* nouriUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nouriUITests.swift; sourceTree = "<group>"; };
 		D233A0322EF31072006F66B8 /* nouriUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nouriUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D233A03F2EF31400006F66B8 /* MealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealType.swift; sourceTree = "<group>"; };
+		D233A0412EF31401006F66B8 /* MealEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealEntry.swift; sourceTree = "<group>"; };
+		D233A0432EF31402006F66B8 /* MealPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPersistenceManager.swift; sourceTree = "<group>"; };
+		D233A0452EF31403006F66B8 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		D233A0472EF31404006F66B8 /* MotivationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotivationView.swift; sourceTree = "<group>"; };
+		D233A0492EF31405006F66B8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D233A04D2EF31500006F66B8 /* CrossPlatformImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossPlatformImage.swift; sourceTree = "<group>"; };
+		D233A04F2EF31501006F66B8 /* CrossPlatformColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossPlatformColor.swift; sourceTree = "<group>"; };
+		D233A0512EF31600006F66B8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +115,10 @@
 			children = (
 				D233A0142EF3106F006F66B8 /* nouriApp.swift */,
 				D233A0162EF3106F006F66B8 /* ContentView.swift */,
+				D233A04B2EF31406006F66B8 /* Models */,
+				D233A04C2EF31407006F66B8 /* Views */,
+				D233A04D2EF31408006F66B8 /* Managers */,
+				D233A0512EF31502006F66B8 /* Helpers */,
 				D233A0182EF31071006F66B8 /* Assets.xcassets */,
 				D233A01A2EF31071006F66B8 /* nouri.entitlements */,
 				D233A01B2EF31071006F66B8 /* Preview Content */,
@@ -127,6 +149,43 @@
 				D233A0322EF31072006F66B8 /* nouriUITestsLaunchTests.swift */,
 			);
 			path = nouriUITests;
+			sourceTree = "<group>";
+		};
+		D233A04B2EF31406006F66B8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D233A03F2EF31400006F66B8 /* MealType.swift */,
+				D233A0412EF31401006F66B8 /* MealEntry.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D233A04C2EF31407006F66B8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D233A0452EF31403006F66B8 /* TodayView.swift */,
+				D233A0472EF31404006F66B8 /* MotivationView.swift */,
+				D233A0492EF31405006F66B8 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D233A04D2EF31408006F66B8 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D233A0432EF31402006F66B8 /* MealPersistenceManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		D233A0512EF31502006F66B8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D233A04D2EF31500006F66B8 /* CrossPlatformImage.swift */,
+				D233A04F2EF31501006F66B8 /* CrossPlatformColor.swift */,
+				D233A0512EF31600006F66B8 /* ImagePicker.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,7 +252,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					D233A0102EF3106F006F66B8 = {
 						CreatedOnToolsVersion = 14.2;
@@ -261,6 +320,15 @@
 			files = (
 				D233A0172EF3106F006F66B8 /* ContentView.swift in Sources */,
 				D233A0152EF3106F006F66B8 /* nouriApp.swift in Sources */,
+				D233A0402EF31400006F66B8 /* MealType.swift in Sources */,
+				D233A0422EF31401006F66B8 /* MealEntry.swift in Sources */,
+				D233A0442EF31402006F66B8 /* MealPersistenceManager.swift in Sources */,
+				D233A0462EF31403006F66B8 /* TodayView.swift in Sources */,
+				D233A0482EF31404006F66B8 /* MotivationView.swift in Sources */,
+				D233A04A2EF31405006F66B8 /* SettingsView.swift in Sources */,
+				D233A04E2EF31500006F66B8 /* CrossPlatformImage.swift in Sources */,
+				D233A0502EF31501006F66B8 /* CrossPlatformColor.swift in Sources */,
+				D233A0522EF31600006F66B8 /* ImagePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,9 +398,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = ZJLZPA9W84;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -350,6 +421,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -388,9 +460,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = ZJLZPA9W84;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -401,6 +476,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
@@ -414,11 +490,15 @@
 				CODE_SIGN_ENTITLEMENTS = nouri/nouri.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"nouri/Preview Content\"";
-				DEVELOPMENT_TEAM = ZJLZPA9W84;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to capture meal photos.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to select meal photos.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -429,15 +509,16 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.7;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.louc.nouri;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -452,11 +533,15 @@
 				CODE_SIGN_ENTITLEMENTS = nouri/nouri.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"nouri/Preview Content\"";
-				DEVELOPMENT_TEAM = ZJLZPA9W84;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to capture meal photos.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to select meal photos.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -467,15 +552,16 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.7;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.louc.nouri;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -485,11 +571,10 @@
 		D233A03A2EF31072006F66B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZJLZPA9W84;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MACOSX_DEPLOYMENT_TARGET = 12.7;
@@ -508,11 +593,10 @@
 		D233A03B2EF31072006F66B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZJLZPA9W84;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MACOSX_DEPLOYMENT_TARGET = 12.7;
@@ -531,10 +615,9 @@
 		D233A03D2EF31072006F66B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZJLZPA9W84;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MACOSX_DEPLOYMENT_TARGET = 12.7;
@@ -553,10 +636,9 @@
 		D233A03E2EF31072006F66B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZJLZPA9W84;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MACOSX_DEPLOYMENT_TARGET = 12.7;
