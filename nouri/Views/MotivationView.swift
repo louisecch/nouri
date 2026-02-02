@@ -117,9 +117,7 @@ struct Quote {
     let author: String?
 }
 
-struct MotivationView_Previews: PreviewProvider {
-    static var previews: some View {
-        MotivationView()
-    }
+#Preview {
+    MotivationView()
 }
 

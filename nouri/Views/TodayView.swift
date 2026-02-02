@@ -96,6 +96,7 @@ struct MealCardView: View {
     @Binding var selectedMealType: MealType?
     
     @StateObject private var persistenceManager = MealPersistenceManager.shared
+    @State private var isHovering = false
     
     var body: some View {
         Button(action: {
@@ -108,42 +109,108 @@ struct MealCardView: View {
                         if let meal = meal,
                            let imageFileName = meal.imageFileName,
                            let image = persistenceManager.loadImage(fileName: imageFileName) {
+                            // Image layer
+                            Group {
+                                #if canImport(UIKit)
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: geometry.size.width, height: geometry.size.height)
+                                    .clipped()
+                                #elseif canImport(AppKit)
+                                Image(nsImage: image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: geometry.size.width, height: geometry.size.height)
+                                    .clipped()
+                                #endif
+                            }
+                            .zIndex(0)
+                            
+                            // Delete button - always visible on iOS, hover on macOS
                             #if canImport(UIKit)
-                            Image(uiImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: geometry.size.width, height: geometry.size.height)
-                                .clipped()
+                            VStack {
+                                HStack {
+                                    Spacer()
+                                    Button(action: {
+                                        persistenceManager.deleteMeal(meal)
+                                    }) {
+                                        ZStack {
+                                            Circle()
+                                                .fill(.ultraThinMaterial)
+                                                .frame(width: 28, height: 28)
+                                            
+                                            Image(systemName: "xmark")
+                                                .font(.system(size: 12, weight: .semibold))
+                                                .foregroundStyle(.secondary)
+                                        }
+                                    }
+                                    .buttonStyle(.plain)
+                                    .padding(8)
+                                }
+                                Spacer()
+                            }
+                            .zIndex(1)
                             #elseif canImport(AppKit)
-                            Image(nsImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: geometry.size.width, height: geometry.size.height)
-                                .clipped()
+                            if isHovering {
+                                VStack {
+                                    HStack {
+                                        Spacer()
+                                        Button(action: {
+                                            persistenceManager.deleteMeal(meal)
+                                        }) {
+                                            ZStack {
+                                                Circle()
+                                                    .fill(.ultraThinMaterial)
+                                                    .frame(width: 28, height: 28)
+                                                
+                                                Image(systemName: "xmark")
+                                                    .font(.system(size: 12, weight: .semibold))
+                                                    .foregroundStyle(.secondary)
+                                            }
+                                        }
+                                        .buttonStyle(.plain)
+                                        .padding(8)
+                                    }
+                                    Spacer()
+                                }
+                                .zIndex(1)
+                                .transition(.opacity)
+                            }
                             #endif
                         } else {
-                            // Placeholder
-                            Rectangle()
-                                #if canImport(UIKit)
-                                .fill(Color(.systemGray6))
-                                #else
-                                .fill(Color(NSColor.separatorColor))
-                                #endif
-                            
-                            VStack(spacing: 8) {
-                                Image(systemName: "camera.fill")
-                                    .font(.system(size: 32))
-                                    .foregroundColor(.secondary)
+                            // Placeholder - centered
+                            ZStack {
+                                Rectangle()
+                                    #if canImport(UIKit)
+                                    .fill(Color(.systemGray6))
+                                    #else
+                                    .fill(Color(NSColor.separatorColor))
+                                    #endif
+                                    .opacity(isHovering ? 0.7 : 1.0)
                                 
-                                Text("Add Photo")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
+                                VStack(spacing: 8) {
+                                    Image(systemName: "camera.fill")
+                                        .font(.system(size: 32))
+                                        .foregroundColor(isHovering ? .primary : .secondary)
+                                    
+                                    Text("Add Photo")
+                                        .font(.caption)
+                                        .foregroundColor(isHovering ? .primary : .secondary)
+                                }
                             }
+                            .scaleEffect(isHovering ? 1.02 : 1.0)
+                            .animation(.easeInOut(duration: 0.2), value: isHovering)
                         }
                     }
                 }
                 .frame(height: 140)
                 .cornerRadius(12)
+                #if canImport(AppKit)
+                .onHover { hovering in
+                    isHovering = hovering
+                }
+                #endif
                 
                 // Meal label
                 Text(mealType.displayName)
@@ -157,9 +224,7 @@ struct MealCardView: View {
     }
 }
 
-struct TodayView_Previews: PreviewProvider {
-    static var previews: some View {
-        TodayView()
-    }
+#Preview {
+    TodayView()
 }
 
