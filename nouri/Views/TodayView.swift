@@ -13,6 +13,7 @@ struct TodayView: View {
     @State private var showingImagePicker = false
     @State private var selectedImage: PlatformImage?
     @State private var showEmojiFlood = false
+    @State private var emojiType: String = "😐"  // Can be "😐" or "🤨"
     
     private let columns = [
         GridItem(.flexible(), spacing: 16),
@@ -76,15 +77,19 @@ struct TodayView: View {
                 }
             }
             .overlay(
-                EmojiFloodView(isShowing: $showEmojiFlood)
+                EmojiFloodView(isShowing: $showEmojiFlood, emoji: emojiType)
             )
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("NutritionallyOkayDetected"))) { _ in
-            triggerEmojiFlood()
+            triggerEmojiFlood(emoji: "😐")
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("UnhealthyFoodDetected"))) { _ in
+            triggerEmojiFlood(emoji: "🤨")
         }
     }
     
-    private func triggerEmojiFlood() {
+    private func triggerEmojiFlood(emoji: String) {
+        emojiType = emoji
         showEmojiFlood = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             showEmojiFlood = false
@@ -250,6 +255,7 @@ struct MealCardView: View {
 
 struct EmojiFloodView: View {
     @Binding var isShowing: Bool
+    let emoji: String  // The emoji to display (😐 or 🤨)
     @State private var emojis: [EmojiParticle] = []
     
     var body: some View {
@@ -258,12 +264,12 @@ struct EmojiFloodView: View {
                 Color.clear
                     .ignoresSafeArea()
                 
-                ForEach(emojis) { emoji in
-                    Text("😐")
-                        .font(.system(size: emoji.size))
-                        .position(x: emoji.x, y: emoji.y)
-                        .opacity(emoji.opacity)
-                        .animation(.easeOut(duration: emoji.duration), value: emoji.y)
+                ForEach(emojis) { emojiParticle in
+                    Text(emoji)
+                        .font(.system(size: emojiParticle.size))
+                        .position(x: emojiParticle.x, y: emojiParticle.y)
+                        .opacity(emojiParticle.opacity)
+                        .animation(.easeOut(duration: emojiParticle.duration), value: emojiParticle.y)
                 }
             }
         }

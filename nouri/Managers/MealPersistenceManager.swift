@@ -281,9 +281,13 @@ class MealPersistenceManager: ObservableObject {
                         userInfo: ["foodName": result.foodName, "score": result.nutritionScore]
                     )
                     
-                    // Trigger emoji flood for nutritionally okay foods (score 0-50)
+                    // Trigger emoji flood based on health score
                     if result.nutritionScore >= 0 && result.nutritionScore <= 50 {
+                        // Nutritionally okay (0-50) - show 😐 emoji flood
                         NotificationCenter.default.post(name: NSNotification.Name("NutritionallyOkayDetected"), object: nil)
+                    } else if result.nutritionScore < 0 {
+                        // Unhealthy (negative score) - show 🤨 emoji flood
+                        NotificationCenter.default.post(name: NSNotification.Name("UnhealthyFoodDetected"), object: nil)
                     }
                 } else {
                     print("✅ Added meal: \(mealType.displayName) with image: \(imageFileName)")
@@ -327,9 +331,13 @@ class MealPersistenceManager: ObservableObject {
                     print("✅ Updated meal: \(meal.mealType.displayName)")
                     print("   Food detected: \(result.foodName) - Score: \(result.nutritionScore)")
                     
-                    // Trigger emoji flood for nutritionally okay foods (score 0-50)
+                    // Trigger emoji flood based on health score
                     if result.nutritionScore >= 0 && result.nutritionScore <= 50 {
+                        // Nutritionally okay (0-50) - show 😐 emoji flood
                         NotificationCenter.default.post(name: NSNotification.Name("NutritionallyOkayDetected"), object: nil)
+                    } else if result.nutritionScore < 0 {
+                        // Unhealthy (negative score) - show 🤨 emoji flood
+                        NotificationCenter.default.post(name: NSNotification.Name("UnhealthyFoodDetected"), object: nil)
                     }
                 } else {
                     print("✅ Updated meal: \(meal.mealType.displayName) with new image: \(imageFileName)")
