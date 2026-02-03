@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67153BF440895C9582B5EBE1 /* HealthScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED911E93761E6283EDAB5FE /* HealthScoreView.swift */; };
 		D233A0152EF3106F006F66B8 /* nouriApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0142EF3106F006F66B8 /* nouriApp.swift */; };
 		D233A0172EF3106F006F66B8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0162EF3106F006F66B8 /* ContentView.swift */; };
 		D233A0192EF31071006F66B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D233A0182EF31071006F66B8 /* Assets.xcassets */; };
@@ -18,12 +19,13 @@
 		D233A0422EF31401006F66B8 /* MealEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0412EF31401006F66B8 /* MealEntry.swift */; };
 		D233A0442EF31402006F66B8 /* MealPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0432EF31402006F66B8 /* MealPersistenceManager.swift */; };
 		D233A0462EF31403006F66B8 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0452EF31403006F66B8 /* TodayView.swift */; };
-		67153BF440895C9582B5EBE1 /* HealthScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED911E93761E6283EDAB5FE /* HealthScoreView.swift */; };
 		D233A0482EF31404006F66B8 /* MotivationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0472EF31404006F66B8 /* MotivationView.swift */; };
 		D233A04A2EF31405006F66B8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0492EF31405006F66B8 /* SettingsView.swift */; };
 		D233A04E2EF31500006F66B8 /* CrossPlatformImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A04D2EF31500006F66B8 /* CrossPlatformImage.swift */; };
 		D233A0502EF31501006F66B8 /* CrossPlatformColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A04F2EF31501006F66B8 /* CrossPlatformColor.swift */; };
 		D233A0522EF31600006F66B8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0512EF31600006F66B8 /* ImagePicker.swift */; };
+		D2BB39F82F326F420029884B /* EnvConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BB39F72F326F420029884B /* EnvConfig.swift */; };
+		D2BB39FA2F326F740029884B /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2BB39F92F326F740029884B /* Config.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6ED911E93761E6283EDAB5FE /* HealthScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthScoreView.swift; sourceTree = "<group>"; };
 		D233A0112EF3106F006F66B8 /* nouri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nouri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D233A0142EF3106F006F66B8 /* nouriApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nouriApp.swift; sourceTree = "<group>"; };
 		D233A0162EF3106F006F66B8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,12 +62,13 @@
 		D233A0412EF31401006F66B8 /* MealEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealEntry.swift; sourceTree = "<group>"; };
 		D233A0432EF31402006F66B8 /* MealPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPersistenceManager.swift; sourceTree = "<group>"; };
 		D233A0452EF31403006F66B8 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
-		6ED911E93761E6283EDAB5FE /* HealthScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthScoreView.swift; sourceTree = "<group>"; };
 		D233A0472EF31404006F66B8 /* MotivationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotivationView.swift; sourceTree = "<group>"; };
 		D233A0492EF31405006F66B8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D233A04D2EF31500006F66B8 /* CrossPlatformImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossPlatformImage.swift; sourceTree = "<group>"; };
 		D233A04F2EF31501006F66B8 /* CrossPlatformColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossPlatformColor.swift; sourceTree = "<group>"; };
 		D233A0512EF31600006F66B8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		D2BB39F72F326F420029884B /* EnvConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvConfig.swift; sourceTree = "<group>"; };
+		D2BB39F92F326F740029884B /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 		D233A0132EF3106F006F66B8 /* nouri */ = {
 			isa = PBXGroup;
 			children = (
+				D2BB39F92F326F740029884B /* Config.plist */,
 				D233A0142EF3106F006F66B8 /* nouriApp.swift */,
 				D233A0162EF3106F006F66B8 /* ContentView.swift */,
 				D233A04B2EF31406006F66B8 /* Models */,
@@ -168,7 +173,8 @@
 				D233A0452EF31403006F66B8 /* TodayView.swift */,
 				6ED911E93761E6283EDAB5FE /* HealthScoreView.swift */,
 				D233A0472EF31404006F66B8 /* MotivationView.swift */,
-				D233A0492EF31405006F66B8 /* SettingsView.swift */,);
+				D233A0492EF31405006F66B8 /* SettingsView.swift */,
+			);
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -183,6 +189,7 @@
 		D233A0512EF31502006F66B8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D2BB39F72F326F420029884B /* EnvConfig.swift */,
 				D233A04D2EF31500006F66B8 /* CrossPlatformImage.swift */,
 				D233A04F2EF31501006F66B8 /* CrossPlatformColor.swift */,
 				D233A0512EF31600006F66B8 /* ImagePicker.swift */,
@@ -295,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D233A01D2EF31071006F66B8 /* Preview Assets.xcassets in Resources */,
+				D2BB39FA2F326F740029884B /* Config.plist in Resources */,
 				D233A0192EF31071006F66B8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,6 +331,7 @@
 				D233A0172EF3106F006F66B8 /* ContentView.swift in Sources */,
 				D233A0152EF3106F006F66B8 /* nouriApp.swift in Sources */,
 				D233A0402EF31400006F66B8 /* MealType.swift in Sources */,
+				D2BB39F82F326F420029884B /* EnvConfig.swift in Sources */,
 				D233A0422EF31401006F66B8 /* MealEntry.swift in Sources */,
 				D233A0442EF31402006F66B8 /* MealPersistenceManager.swift in Sources */,
 				D233A0462EF31403006F66B8 /* TodayView.swift in Sources */,

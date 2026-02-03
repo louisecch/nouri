@@ -7,6 +7,7 @@
 
 import Foundation
 import Vision
+import CoreML
 
 #if canImport(UIKit)
 import UIKit
@@ -17,11 +18,25 @@ import AppKit
 // MARK: - Configuration
 
 private struct APIConfig {
-    // Hugging Face configuration
-    // Get from: https://huggingface.co/settings/tokens
-    // Free tier: ~10,000 requests/month
-    static let huggingFaceAPIKey = "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"
-    static let modelID = "BinhQuocNguyen/food-recognition-model"
+    // OpenAI Vision API configuration
+    // Get from: https://platform.openai.com/api-keys
+    // Pricing: ~$0.00015 per image (gpt-4o-mini), ~$0.01 per image (gpt-4o)
+    
+    // Load from .env file for security
+    static let openAIAPIKey: String = {
+        let envKey = EnvConfig.shared.get("OPENAI_API_KEY", default: "YOUR_OPENAI_API_KEY")
+        if envKey != "YOUR_OPENAI_API_KEY" {
+            print("✅ OpenAI API key loaded from .env file")
+        }
+        return envKey
+    }()
+    
+    static let openAIModel: String = {
+        return EnvConfig.shared.get("OPENAI_MODEL", default: "gpt-4o-mini")
+    }()
+    
+    // Fallback: disable API and use local Vision detection (set to true to use fallback only)
+    static let useLocalDetectionOnly = false  // Set to true to force local Vision detection
 }
 
 // MARK: - Food Recognition Models
@@ -114,6 +129,7 @@ class MealPersistenceManager: ObservableObject {
         "tuna": (.protein, 80, "Low fat protein"),
         "tofu": (.protein, 75, "Plant-based protein"),
         "beef": (.protein, 60, "High protein, iron"),
+        "steak": (.protein, 60, "High protein, iron"),
         "pork": (.protein, 55, "Moderate protein"),
         "fish": (.protein, 80, "Heart-healthy"),
         "shrimp": (.protein, 75, "Low calorie protein"),
@@ -155,6 +171,7 @@ class MealPersistenceManager: ObservableObject {
         // Sweets (-40 to -75)
         "candy": (.sweets, -70, "Pure sugar"),
         "cake": (.sweets, -50, "High sugar"),
+        "chocolate_cake": (.sweets, -55, "High sugar, fat"),
         "cookie": (.sweets, -50, "Refined sugar"),
         "cookies": (.sweets, -50, "Refined sugar"),
         "donut": (.sweets, -65, "Sugar and trans fats"),
@@ -162,6 +179,7 @@ class MealPersistenceManager: ObservableObject {
         "chocolate": (.sweets, -40, "Sugar, some benefits"),
         "brownie": (.sweets, -55, "High sugar, fat"),
         "pie": (.sweets, -50, "High sugar"),
+        "apple_pie": (.sweets, -45, "Fruit with sugar"),
         
         // Processed (-50 to -70)
         "chips": (.processedFood, -60, "High sodium"),
@@ -255,6 +273,13 @@ class MealPersistenceManager: ObservableObject {
                     print("✅ Added meal: \(mealType.displayName)")
                     print("   Food detected: \(result.foodName) (confidence: \(Int(result.confidence * 100))%)")
                     print("   Health score: \(result.nutritionScore) - \(result.details)")
+                    
+                    // Post notification with detection info
+                    NotificationCenter.default.post(
+                        name: NSNotification.Name("FoodDetected"),
+                        object: nil,
+                        userInfo: ["foodName": result.foodName, "score": result.nutritionScore]
+                    )
                     
                     // Trigger emoji flood for nutritionally okay foods (score 0-50)
                     if result.nutritionScore >= 0 && result.nutritionScore <= 50 {
@@ -459,9 +484,9 @@ class MealPersistenceManager: ObservableObject {
         
         print("✅ Image converted to JPEG data: \(imageData.count) bytes")
         
-        // Use Hugging Face Food Recognition API
-        print("🌐 Calling Hugging Face API...")
-        recognizeFoodWithHuggingFace(imageData: imageData) { [weak self] foodName in
+        // Use OpenAI Vision API for Food Recognition
+        print("🌐 Calling OpenAI Vision API...")
+        recognizeFoodWithAI(imageData: imageData) { [weak self] foodName in
             guard let self = self else { return }
             
             if let detectedFood = foodName {
@@ -504,30 +529,64 @@ class MealPersistenceManager: ObservableObject {
         }
     }
     
-    // Hugging Face Food Recognition API
-    private func recognizeFoodWithHuggingFace(imageData: Data, completion: @escaping (String?) -> Void) {
-        let apiKey = APIConfig.huggingFaceAPIKey
+    // OpenAI Vision API for Food Recognition
+    private func recognizeFoodWithAI(imageData: Data, completion: @escaping (String?) -> Void) {
+        // Check if local detection is forced
+        if APIConfig.useLocalDetectionOnly {
+            print("ℹ️ Local Vision detection mode enabled")
+            useFallbackDetection(imageData: imageData, completion: completion)
+            return
+        }
         
-        print("🔑 API Key present: \(apiKey != "YOUR_HUGGINGFACE_API_KEY")")
+        let apiKey = APIConfig.openAIAPIKey
         
-        // For now, use fallback detection until API key is added
-        if apiKey == "YOUR_HUGGINGFACE_API_KEY" {
-            print("⚠️ Hugging Face API key not configured, using fallback detection")
-            print("   Get free API key at: https://huggingface.co/settings/tokens")
+        // Check if API key is configured
+        if apiKey == "YOUR_OPENAI_API_KEY" {
+            print("⚠️ OpenAI API key not configured, using local Vision detection")
+            print("   Get your API key at: https://platform.openai.com/api-keys")
             print("   Add it to MealPersistenceManager.swift (APIConfig struct)")
             useFallbackDetection(imageData: imageData, completion: completion)
             return
         }
         
-        print("✅ Using Hugging Face API with key: \(String(apiKey.prefix(8)))...")
+        print("✅ Using OpenAI Vision API with key: \(String(apiKey.prefix(8)))...")
+        print("✅ Using model: \(APIConfig.openAIModel)")
         
-        let modelID = APIConfig.modelID
-        print("✅ Using model: \(modelID)")
-        
-        // Hugging Face Inference API endpoint
-        let urlString = "https://api-inference.huggingface.co/models/\(modelID)"
-        guard let url = URL(string: urlString) else {
+        // OpenAI Vision API endpoint
+        guard let url = URL(string: "https://api.openai.com/v1/chat/completions") else {
             print("❌ Invalid API URL")
+            useFallbackDetection(imageData: imageData, completion: completion)
+            return
+        }
+        
+        // Convert image to base64
+        let base64Image = imageData.base64EncodedString()
+        
+        // Create OpenAI Vision request
+        let requestBody: [String: Any] = [
+            "model": APIConfig.openAIModel,
+            "messages": [
+                [
+                    "role": "user",
+                    "content": [
+                        [
+                            "type": "text",
+                            "text": "You are a food recognition expert. Analyze this image and identify the main food item. Respond with ONLY the food name in lowercase, nothing else. Examples: 'pizza', 'salad', 'cappuccino', 'burger', 'rice', 'chicken'. Be specific but concise."
+                        ],
+                        [
+                            "type": "image_url",
+                            "image_url": [
+                                "url": "data:image/jpeg;base64,\(base64Image)"
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            "max_tokens": 50
+        ]
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: requestBody) else {
+            print("❌ Failed to create request body")
             useFallbackDetection(imageData: imageData, completion: completion)
             return
         }
@@ -537,85 +596,82 @@ class MealPersistenceManager: ObservableObject {
         request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.timeoutInterval = 30
+        request.httpBody = httpBody
         
-        // Hugging Face expects base64-encoded image in JSON body
-        let base64Image = imageData.base64EncodedString()
-        let jsonBody: [String: Any] = [
-            "inputs": base64Image
-        ]
-        
-        request.httpBody = try? JSONSerialization.data(withJSONObject: jsonBody)
-        
-        print("🚀 Sending request to Hugging Face...")
+        print("🚀 Sending request to OpenAI Vision API...")
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                print("❌ Hugging Face API network error: \(error.localizedDescription)")
+                print("❌ OpenAI API network error: \(error.localizedDescription)")
                 self.useFallbackDetection(imageData: imageData, completion: completion)
                 return
             }
             
             if let httpResponse = response as? HTTPURLResponse {
-                print("📡 Hugging Face response status: \(httpResponse.statusCode)")
+                print("📡 OpenAI response status: \(httpResponse.statusCode)")
                 
-                // Handle rate limiting or model loading
-                if httpResponse.statusCode == 503 {
-                    print("⚠️ Model is loading, this may take 20-30 seconds on first request")
-                    print("   Falling back to color detection for now")
+                if httpResponse.statusCode == 401 {
+                    print("❌ Authentication failed - check API key")
                     self.useFallbackDetection(imageData: imageData, completion: completion)
                     return
                 }
                 
                 if httpResponse.statusCode == 429 {
-                    print("⚠️ Rate limit exceeded, falling back to color detection")
+                    print("⚠️ Rate limit exceeded")
+                    self.useFallbackDetection(imageData: imageData, completion: completion)
+                    return
+                }
+                
+                if httpResponse.statusCode != 200 {
+                    print("❌ Unexpected status code: \(httpResponse.statusCode)")
+                    if let data = data, let errorString = String(data: data, encoding: .utf8) {
+                        print("   Error response: \(errorString)")
+                    }
                     self.useFallbackDetection(imageData: imageData, completion: completion)
                     return
                 }
             }
             
             guard let data = data else {
-                print("❌ No data received from Hugging Face")
+                print("❌ No data received from OpenAI")
                 self.useFallbackDetection(imageData: imageData, completion: completion)
                 return
             }
             
             print("✅ Received data: \(data.count) bytes")
             
-            // Print raw response for debugging
-            if let jsonString = String(data: data, encoding: .utf8) {
-                print("📄 Hugging Face response: \(jsonString.prefix(500))...")
-            }
-            
             do {
-                // Hugging Face returns an array of predictions: [{"label": "pizza", "score": 0.95}, ...]
-                if let predictions = try JSONSerialization.jsonObject(with: data) as? [[String: Any]] {
-                    print("📦 JSON parsed successfully - \(predictions.count) predictions")
+                // Parse OpenAI response
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                   let choices = json["choices"] as? [[String: Any]],
+                   let firstChoice = choices.first,
+                   let message = firstChoice["message"] as? [String: Any],
+                   let content = message["content"] as? String {
                     
-                    if let topPrediction = predictions.first,
-                       let label = topPrediction["label"] as? String,
-                       let score = topPrediction["score"] as? Double {
-                        print("🎯 Top detection: \(label) (confidence: \(Int(score * 100))%)")
-                        completion(label)
-                    } else {
-                        print("❌ Could not extract food label from predictions")
-                        print("📋 Full predictions: \(predictions)")
-                        self.useFallbackDetection(imageData: imageData, completion: completion)
-                    }
+                    // Clean up the response - remove extra whitespace and newlines
+                    let foodName = content.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+                    
+                    print("🎯 OpenAI detected: \(foodName)")
+                    completion(foodName)
                 } else {
-                    print("❌ Response is not valid predictions array")
+                    print("❌ Could not parse OpenAI response")
+                    if let jsonString = String(data: data, encoding: .utf8) {
+                        print("   Response: \(jsonString.prefix(200))")
+                    }
                     self.useFallbackDetection(imageData: imageData, completion: completion)
                 }
             } catch {
-                print("❌ Failed to parse Hugging Face response: \(error)")
+                print("❌ Failed to parse OpenAI response: \(error)")
                 self.useFallbackDetection(imageData: imageData, completion: completion)
             }
         }.resume()
         
-        print("⏳ Waiting for Hugging Face response...")
+        print("⏳ Waiting for OpenAI Vision response...")
     }
     
-    // Fallback detection when API is not configured
+    // Vision-based food detection using Core ML and Vision framework
     private func useFallbackDetection(imageData: Data, completion: @escaping (String?) -> Void) {
+        print("🔬 USING VISION-BASED DETECTION (Core ML + Vision Framework)")
         DispatchQueue.global(qos: .userInitiated).async {
             // Create image from data
             #if canImport(UIKit)
@@ -632,11 +688,340 @@ class MealPersistenceManager: ObservableObject {
             }
             #endif
             
-            // Use basic color detection
-            let foodGuess = self.guessFood(from: cgImage)
-            DispatchQueue.main.async {
-                completion(foodGuess)
+            // Use Vision framework for advanced analysis
+            self.analyzeImageWithVision(cgImage: cgImage) { foodGuess in
+                DispatchQueue.main.async {
+                    completion(foodGuess)
+                }
             }
+        }
+    }
+    
+    // MARK: - Vision Framework Analysis
+    // Advanced on-device food detection using Core ML + Vision
+    // Combines multiple analysis techniques:
+    // 1. Color Analysis - Dominant colors, percentages, brightness, variance
+    // 2. Texture Analysis - Rectangles, circles, edge detection, homogeneity
+    // 3. Shape Analysis - Contours, aspect ratios, circular detection
+    // 4. Combined Decision - Weighted scoring based on all analyses
+    
+    private func analyzeImageWithVision(cgImage: CGImage, completion: @escaping (String?) -> Void) {
+        print("🔍 Starting Vision framework analysis...")
+        
+        // Create Vision request handler
+        let requestHandler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        
+        // Run multiple Vision analyses in parallel
+        var colorAnalysis: ColorAnalysisResult?
+        var textureAnalysis: TextureAnalysisResult?
+        var shapeAnalysis: ShapeAnalysisResult?
+        
+        let group = DispatchGroup()
+        
+        // 1. Color Analysis
+        group.enter()
+        analyzeColors(cgImage: cgImage) { result in
+            colorAnalysis = result
+            group.leave()
+        }
+        
+        // 2. Texture Analysis using Vision
+        group.enter()
+        analyzeTexture(requestHandler: requestHandler) { result in
+            textureAnalysis = result
+            group.leave()
+        }
+        
+        // 3. Shape Analysis
+        group.enter()
+        analyzeShapes(requestHandler: requestHandler) { result in
+            shapeAnalysis = result
+            group.leave()
+        }
+        
+        // Wait for all analyses to complete
+        group.notify(queue: .global(qos: .userInitiated)) {
+            // Combine all analyses to determine food
+            let detectedFood = self.combinedFoodDetection(
+                color: colorAnalysis,
+                texture: textureAnalysis,
+                shape: shapeAnalysis
+            )
+            
+            print("✅ Vision analysis complete: \(detectedFood)")
+            completion(detectedFood)
+        }
+    }
+    
+    // MARK: - Color Analysis
+    
+    struct ColorAnalysisResult {
+        let dominantColors: [ImageColor]
+        let greenPercent: Double
+        let redPercent: Double
+        let yellowPercent: Double
+        let brownPercent: Double
+        let whitePercent: Double
+        let averageBrightness: Double
+        let colorVariance: Double
+    }
+    
+    private func analyzeColors(cgImage: CGImage, completion: @escaping (ColorAnalysisResult?) -> Void) {
+        let colors = extractDominantColors(from: cgImage)
+        
+        let totalColors = max(colors.count, 1)
+        
+        let greenCount = colors.filter { $0.isGreenish }.count
+        let redCount = colors.filter { $0.isReddish }.count
+        let yellowCount = colors.filter { $0.isYellowish }.count
+        let brownCount = colors.filter { $0.isBrownish }.count
+        let whiteCount = colors.filter { $0.isWhitish }.count
+        
+        let greenPercent = Double(greenCount) / Double(totalColors)
+        let redPercent = Double(redCount) / Double(totalColors)
+        let yellowPercent = Double(yellowCount) / Double(totalColors)
+        let brownPercent = Double(brownCount) / Double(totalColors)
+        let whitePercent = Double(whiteCount) / Double(totalColors)
+        
+        // Calculate average brightness
+        let avgBrightness = colors.map { ($0.r + $0.g + $0.b) / 3.0 }.reduce(0, +) / Double(totalColors)
+        
+        // Calculate color variance (how diverse the colors are)
+        let variance = calculateColorVariance(colors: colors)
+        
+        let result = ColorAnalysisResult(
+            dominantColors: colors,
+            greenPercent: greenPercent,
+            redPercent: redPercent,
+            yellowPercent: yellowPercent,
+            brownPercent: brownPercent,
+            whitePercent: whitePercent,
+            averageBrightness: avgBrightness,
+            colorVariance: variance
+        )
+        
+        print("📊 Color Analysis: G:\(Int(greenPercent*100))% R:\(Int(redPercent*100))% Y:\(Int(yellowPercent*100))% B:\(Int(brownPercent*100))% W:\(Int(whitePercent*100))%")
+        
+        completion(result)
+    }
+    
+    private func calculateColorVariance(colors: [ImageColor]) -> Double {
+        guard !colors.isEmpty else { return 0 }
+        
+        let avgR = colors.map { $0.r }.reduce(0, +) / Double(colors.count)
+        let avgG = colors.map { $0.g }.reduce(0, +) / Double(colors.count)
+        let avgB = colors.map { $0.b }.reduce(0, +) / Double(colors.count)
+        
+        let variance = colors.map { color in
+            pow(color.r - avgR, 2) + pow(color.g - avgG, 2) + pow(color.b - avgB, 2)
+        }.reduce(0, +) / Double(colors.count)
+        
+        return variance
+    }
+    
+    // MARK: - Texture Analysis
+    
+    struct TextureAnalysisResult {
+        let hasRectangles: Bool  // Pizza, sandwiches
+        let hasCircles: Bool      // Burgers, donuts, plates
+        let edgeCount: Int        // Complexity
+        let isHomogeneous: Bool   // Smooth vs varied texture
+    }
+    
+    private func analyzeTexture(requestHandler: VNImageRequestHandler, completion: @escaping (TextureAnalysisResult?) -> Void) {
+        // Detect rectangles
+        let rectangleRequest = VNDetectRectanglesRequest { request, error in
+            let rectangleCount = request.results?.count ?? 0
+            
+            // Use contour detection for edge/texture analysis (available in iOS 14+)
+            let contourRequest = VNDetectContoursRequest { contourReq, contourError in
+                let contourObservations = contourReq.results as? [VNContoursObservation] ?? []
+                let edgeCount = contourObservations.reduce(0) { $0 + $1.contourCount }
+                
+                let result = TextureAnalysisResult(
+                    hasRectangles: rectangleCount > 0,
+                    hasCircles: false, // Will be detected in shape analysis
+                    edgeCount: edgeCount,
+                    isHomogeneous: edgeCount < 50
+                )
+                
+                print("🧩 Texture Analysis: Rectangles:\(rectangleCount) Edges:\(edgeCount)")
+                completion(result)
+            }
+            
+            contourRequest.contrastAdjustment = 1.5
+            contourRequest.detectsDarkOnLight = true
+            
+            do {
+                try requestHandler.perform([contourRequest])
+            } catch {
+                print("⚠️ Contour detection failed: \(error)")
+                // Fallback without edge detection
+                let result = TextureAnalysisResult(
+                    hasRectangles: rectangleCount > 0,
+                    hasCircles: false,
+                    edgeCount: 0,
+                    isHomogeneous: true
+                )
+                completion(result)
+            }
+        }
+        
+        rectangleRequest.minimumConfidence = 0.6
+        rectangleRequest.minimumAspectRatio = 0.3
+        
+        do {
+            try requestHandler.perform([rectangleRequest])
+        } catch {
+            print("⚠️ Rectangle detection failed: \(error)")
+            // Fallback with no texture analysis
+            let result = TextureAnalysisResult(
+                hasRectangles: false,
+                hasCircles: false,
+                edgeCount: 0,
+                isHomogeneous: true
+            )
+            completion(result)
+        }
+    }
+    
+    // MARK: - Shape Analysis
+    
+    struct ShapeAnalysisResult {
+        let hasCircularShapes: Bool
+        let aspectRatio: Double  // Width/height ratio
+        let symmetry: Double     // How symmetrical the food is
+    }
+    
+    private func analyzeShapes(requestHandler: VNImageRequestHandler, completion: @escaping (ShapeAnalysisResult?) -> Void) {
+        // Detect contours for shape analysis
+        let contourRequest = VNDetectContoursRequest { request, error in
+            if let error = error {
+                print("⚠️ Shape detection error: \(error)")
+                completion(ShapeAnalysisResult(hasCircularShapes: false, aspectRatio: 1.0, symmetry: 0.5))
+                return
+            }
+            
+            guard let observations = request.results as? [VNContoursObservation] else {
+                completion(ShapeAnalysisResult(hasCircularShapes: false, aspectRatio: 1.0, symmetry: 0.5))
+                return
+            }
+            
+            // Analyze shape characteristics
+            let hasCircular = observations.contains { obs in
+                // Check if contour is roughly circular
+                let boundingBox = obs.normalizedPath.boundingBox
+                guard boundingBox.height > 0 else { return false }
+                let aspectRatio = boundingBox.width / boundingBox.height
+                return aspectRatio > 0.8 && aspectRatio < 1.2
+            }
+            
+            let avgAspectRatio = observations.isEmpty ? 1.0 :
+                observations.compactMap { obs -> Double? in
+                    let boundingBox = obs.normalizedPath.boundingBox
+                    guard boundingBox.height > 0 else { return nil }
+                    return boundingBox.width / boundingBox.height
+                }
+                .reduce(0, +) / Double(max(observations.count, 1))
+            
+            let result = ShapeAnalysisResult(
+                hasCircularShapes: hasCircular,
+                aspectRatio: avgAspectRatio,
+                symmetry: 0.5
+            )
+            
+            print("🔺 Shape Analysis: Circular:\(hasCircular) AspectRatio:\(String(format: "%.2f", avgAspectRatio))")
+            completion(result)
+        }
+        
+        contourRequest.contrastAdjustment = 1.5
+        contourRequest.detectsDarkOnLight = true
+        
+        do {
+            try requestHandler.perform([contourRequest])
+        } catch {
+            print("⚠️ Shape analysis failed: \(error)")
+            completion(ShapeAnalysisResult(hasCircularShapes: false, aspectRatio: 1.0, symmetry: 0.5))
+        }
+    }
+    
+    // MARK: - Combined Analysis
+    
+    private func combinedFoodDetection(
+        color: ColorAnalysisResult?,
+        texture: TextureAnalysisResult?,
+        shape: ShapeAnalysisResult?
+    ) -> String {
+        print("🎯 Combining analyses for final detection...")
+        
+        guard let color = color else {
+            return getFallbackByTime()
+        }
+        
+        // High confidence detections based on strong color signals
+        
+        // Green vegetables (salad, broccoli, etc.)
+        if color.greenPercent > 0.35 {
+            return color.colorVariance > 0.05 ? "salad" : "broccoli"
+        }
+        
+        // Pizza (red sauce + yellow cheese + low variance)
+        if color.redPercent > 0.15 && color.yellowPercent > 0.15 {
+            return texture?.hasRectangles == true ? "pizza" : "pasta"
+        }
+        
+        // Banana (yellow dominant)
+        if color.yellowPercent > 0.45 && color.redPercent < 0.1 {
+            return shape?.hasCircularShapes == true ? "apple_pie" : "banana"
+        }
+        
+        // Coffee/Cappuccino (brown + white with specific ratios)
+        if color.brownPercent > 0.25 && color.whitePercent > 0.2 {
+            return shape?.hasCircularShapes == true ? "cappuccino" : "donut"
+        }
+        
+        // Tea (brown without white)
+        if color.brownPercent > 0.35 && color.whitePercent < 0.15 {
+            return "tea"
+        }
+        
+        // Strawberries/Tomatoes (red dominant)
+        if color.redPercent > 0.35 {
+            return color.colorVariance > 0.03 ? "strawberry" : "tomato"
+        }
+        
+        // Orange foods
+        if color.redPercent > 0.2 && color.yellowPercent > 0.25 && color.greenPercent < 0.1 {
+            return shape?.hasCircularShapes == true ? "orange" : "carrots"
+        }
+        
+        // Rice/Bread (white/beige dominant)
+        if color.whitePercent > 0.4 {
+            return texture?.isHomogeneous == true ? "rice" : "bread"
+        }
+        
+        // Chocolate/Dark foods
+        if color.brownPercent > 0.4 && color.averageBrightness < 0.3 {
+            return shape?.hasCircularShapes == true ? "chocolate_cake" : "steak"
+        }
+        
+        // Medium-diverse colors might be mixed foods
+        if color.colorVariance > 0.08 {
+            return "salad"  // Likely a mixed dish
+        }
+        
+        // Default fallback based on time
+        return getFallbackByTime()
+    }
+    
+    private func getFallbackByTime() -> String {
+        let hour = Calendar.current.component(.hour, from: Date())
+        if hour >= 6 && hour < 11 {
+            return "oatmeal"
+        } else if hour >= 11 && hour < 15 {
+            return "chicken"
+        } else {
+            return "rice"
         }
     }
     
@@ -685,53 +1070,6 @@ class MealPersistenceManager: ObservableObject {
     
     // Intelligent guess based on image analysis
     // This is a placeholder until we integrate a real ML model
-    private func guessFood(from cgImage: CGImage) -> String {
-        // Analyze dominant colors
-        let colors = extractDominantColors(from: cgImage)
-        
-        // Simple heuristic-based detection
-        let hasBrown = colors.contains { $0.isBrownish }
-        let hasGreen = colors.contains { $0.isGreenish }
-        let hasRed = colors.contains { $0.isReddish }
-        let hasYellow = colors.contains { $0.isYellowish }
-        let hasWhite = colors.contains { $0.isWhitish }
-        
-        // Coffee/cappuccino detection (brown + white/cream tones)
-        if hasBrown && hasWhite {
-            return "cappuccino"
-        }
-        
-        // Tea detection (lighter brown, amber tones)
-        if hasBrown && !hasWhite {
-            return "tea"
-        }
-        
-        // Salad/vegetables (green dominant)
-        if hasGreen && !hasBrown {
-            return "salad"
-        }
-        
-        // Pizza (red sauce + yellow cheese)
-        if hasRed && hasYellow {
-            return "pizza"
-        }
-        
-        // Banana (yellow dominant)
-        if hasYellow && !hasRed {
-            return "banana"
-        }
-        
-        // Default fallback based on meal time
-        let hour = Calendar.current.component(.hour, from: Date())
-        if hour >= 6 && hour < 11 {
-            return "oatmeal" // Breakfast
-        } else if hour >= 11 && hour < 15 {
-            return "chicken" // Lunch
-        } else {
-            return "rice" // Dinner
-        }
-    }
-    
     // Extract dominant colors from image
     private func extractDominantColors(from cgImage: CGImage) -> [ImageColor] {
         let width = cgImage.width

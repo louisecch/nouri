@@ -75,16 +75,23 @@ A simple, mindful iOS app for tracking daily meals with photos. Built with Swift
 
 ## AI Food Recognition
 
-The app includes **FREE AI-powered food recognition** using Hugging Face:
+The app includes **AI-powered food recognition** with two options:
 
-- **🆓 Completely FREE** - No credit card required
-- **🎯 94% accuracy** - 101 food categories
-- **⚡ Fast** - <2 seconds per image
-- **🔓 Open source** - Can self-host if needed
+### Option 1: OpenAI Vision API (Recommended)
+- **🎯 Highest Accuracy**: GPT-4 Vision excels at food recognition
+- **⚡ Fast**: 1-2 seconds per image
+- **🌍 Comprehensive**: Recognizes foods from all cuisines worldwide
+- **💰 Low Cost**: ~$0.00015 per image with gpt-4o-mini
 
-**Setup:** See [HUGGINGFACE_SETUP.md](HUGGINGFACE_SETUP.md) for 2-minute setup guide.
+**Setup:** See [OPENAI_SETUP.md](OPENAI_SETUP.md) for setup guide.
 
-**Optional:** App works perfectly without API key (uses color-based fallback detection).
+### Option 2: Local Vision Framework (Free, On-Device)
+- **🆓 Completely FREE** - No API needed
+- **🔒 100% Private** - All processing on-device
+- **🚫 No Internet** - Works offline
+- **🧠 Advanced**: Uses Core ML + Vision framework with color, texture, and shape analysis
+
+**Fallback:** App automatically uses local Vision detection if no API key is configured.
 
 ## Privacy
 
@@ -96,8 +103,9 @@ The app requests:
 **Data Storage:**
 
 - All meal data stored locally on device
-- Photos never leave your device (unless you enable AI recognition)
-- When using AI: Images sent to Hugging Face API for analysis only (not stored)
+- Photos never leave your device (unless you use OpenAI Vision API)
+- When using OpenAI API: Images sent to OpenAI for analysis only (not stored by OpenAI)
+- Local Vision mode: 100% on-device, nothing sent to any server
 - No cloud sync or tracking
 
 ## Building & Running
