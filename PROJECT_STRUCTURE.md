@@ -13,6 +13,7 @@ nouri/
 │
 ├── Views/
 │   ├── TodayView.swift         # Home screen with meal grid
+│   ├── HealthScoreView.swift  # Health score tracking
 │   ├── MotivationView.swift   # Daily quote display
 │   └── SettingsView.swift     # App settings
 │
@@ -25,18 +26,23 @@ nouri/
 ## Code Structure
 
 ### Models (2 files)
+
 **MealType.swift**
+
 - Defines 6 fixed meal categories
 - Provides display names and sort order
 - Codable for persistence
 
 **MealEntry.swift**
+
 - Represents a single logged meal
 - Contains: ID, meal type, date, image filename
 - Codable for JSON storage
 
 ### Managers (1 file)
+
 **MealPersistenceManager.swift**
+
 - Singleton pattern (`shared`)
 - Observable object for SwiftUI
 - Handles:
@@ -45,15 +51,27 @@ nouri/
   - CRUD operations for meals
   - File system management
 
-### Views (3 files)
+### Views (4 files)
+
 **TodayView.swift**
+
 - Navigation stack with "Today" title
 - Header showing day of week and date
 - 2-column LazyVGrid with 6 meal cards
 - PhotosPicker integration
 - Real-time meal updates via persistence manager
 
+**HealthScoreView.swift**
+
+- Daily and weekly health score cards
+- Today's meals breakdown with individual scores
+- Color-coded scoring system (green/blue/orange/red)
+- Expandable scoring guide
+- Real-time score calculations
+- Beautiful gradient cards with visual feedback
+
 **MotivationView.swift**
+
 - 10 curated wellness quotes
 - Daily rotation based on day of year
 - Gradient background
@@ -61,6 +79,7 @@ nouri/
 - Centered, readable typography
 
 **SettingsView.swift**
+
 - List-based layout
 - App info section (version, meal count)
 - Data management (clear all data)
@@ -68,12 +87,15 @@ nouri/
 - Destructive action with confirmation alert
 
 ### Main Container
+
 **ContentView.swift**
+
 - TabView with 3 tabs
 - SF Symbols for tab icons
 - State management for selected tab
 
 **nouriApp.swift**
+
 - @main entry point
 - WindowGroup with ContentView
 
@@ -121,7 +143,7 @@ nouri/
 ✓ Destructive action colors  
 ✓ Confirmation alerts for destructive actions  
 ✓ Accessibility-ready structure  
-✓ Standard list layouts  
+✓ Standard list layouts
 
 ## Privacy Compliance
 
@@ -136,5 +158,3 @@ nouri/
 - Deployment: iPhone & iPad
 - Orientation: Portrait (primary)
 - Bundle ID: dev.louc.nouri
-
-

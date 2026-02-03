@@ -212,12 +212,29 @@ struct MealCardView: View {
                 }
                 #endif
                 
-                // Meal label
-                Text(mealType.displayName)
-                    .font(.subheadline)
-                    .fontWeight(.medium)
-                    .foregroundColor(.primary)
-                    .padding(.top, 8)
+                // Meal label and info
+                VStack(spacing: 4) {
+                    Text(mealType.displayName)
+                        .font(.subheadline)
+                        .fontWeight(.medium)
+                        .foregroundColor(.primary)
+                    
+                    if let meal = meal {
+                        if let foodName = meal.foodName {
+                            HStack(spacing: 4) {
+                                Text(foodName)
+                                    .font(.caption2)
+                                    .foregroundColor(.secondary)
+                                
+                                if let _ = meal.healthScore {
+                                    Text(meal.healthScoreEmoji)
+                                        .font(.caption2)
+                                }
+                            }
+                        }
+                    }
+                }
+                .padding(.top, 8)
             }
         }
         .buttonStyle(.plain)

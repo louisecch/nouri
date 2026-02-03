@@ -18,6 +18,7 @@
 		D233A0422EF31401006F66B8 /* MealEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0412EF31401006F66B8 /* MealEntry.swift */; };
 		D233A0442EF31402006F66B8 /* MealPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0432EF31402006F66B8 /* MealPersistenceManager.swift */; };
 		D233A0462EF31403006F66B8 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0452EF31403006F66B8 /* TodayView.swift */; };
+		67153BF440895C9582B5EBE1 /* HealthScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED911E93761E6283EDAB5FE /* HealthScoreView.swift */; };
 		D233A0482EF31404006F66B8 /* MotivationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0472EF31404006F66B8 /* MotivationView.swift */; };
 		D233A04A2EF31405006F66B8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A0492EF31405006F66B8 /* SettingsView.swift */; };
 		D233A04E2EF31500006F66B8 /* CrossPlatformImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233A04D2EF31500006F66B8 /* CrossPlatformImage.swift */; };
@@ -58,6 +59,7 @@
 		D233A0412EF31401006F66B8 /* MealEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealEntry.swift; sourceTree = "<group>"; };
 		D233A0432EF31402006F66B8 /* MealPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPersistenceManager.swift; sourceTree = "<group>"; };
 		D233A0452EF31403006F66B8 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		6ED911E93761E6283EDAB5FE /* HealthScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthScoreView.swift; sourceTree = "<group>"; };
 		D233A0472EF31404006F66B8 /* MotivationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotivationView.swift; sourceTree = "<group>"; };
 		D233A0492EF31405006F66B8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D233A04D2EF31500006F66B8 /* CrossPlatformImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossPlatformImage.swift; sourceTree = "<group>"; };
@@ -164,9 +166,9 @@
 			isa = PBXGroup;
 			children = (
 				D233A0452EF31403006F66B8 /* TodayView.swift */,
+				6ED911E93761E6283EDAB5FE /* HealthScoreView.swift */,
 				D233A0472EF31404006F66B8 /* MotivationView.swift */,
-				D233A0492EF31405006F66B8 /* SettingsView.swift */,
-			);
+				D233A0492EF31405006F66B8 /* SettingsView.swift */,);
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -324,6 +326,7 @@
 				D233A0422EF31401006F66B8 /* MealEntry.swift in Sources */,
 				D233A0442EF31402006F66B8 /* MealPersistenceManager.swift in Sources */,
 				D233A0462EF31403006F66B8 /* TodayView.swift in Sources */,
+				67153BF440895C9582B5EBE1 /* HealthScoreView.swift in Sources */,
 				D233A0482EF31404006F66B8 /* MotivationView.swift in Sources */,
 				D233A04A2EF31405006F66B8 /* SettingsView.swift in Sources */,
 				D233A04E2EF31500006F66B8 /* CrossPlatformImage.swift in Sources */,

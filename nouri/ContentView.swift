@@ -18,17 +18,23 @@ struct ContentView: View {
                 }
                 .tag(0)
             
+            HealthScoreView()
+                .tabItem {
+                    Label("Health", systemImage: "heart.text.square.fill")
+                }
+                .tag(1)
+            
             MotivationView()
                 .tabItem {
                     Label("Learn", systemImage: "lightbulb.fill")
                 }
-                .tag(1)
+                .tag(2)
             
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
                 }
-                .tag(2)
+                .tag(3)
         }
     }
 }
