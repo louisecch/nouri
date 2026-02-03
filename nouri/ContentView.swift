@@ -20,7 +20,7 @@ struct ContentView: View {
             
             MotivationView()
                 .tabItem {
-                    Label("Motivation", systemImage: "heart.fill")
+                    Label("Learn", systemImage: "lightbulb.fill")
                 }
                 .tag(1)
             
