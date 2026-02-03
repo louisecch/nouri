@@ -80,6 +80,9 @@ struct TodayView: View {
                 EmojiFloodView(isShowing: $showEmojiFlood, emoji: emojiType)
             )
         }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("HealthyFoodDetected"))) { _ in
+            triggerEmojiFlood(emoji: "🤩")
+        }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("NutritionallyOkayDetected"))) { _ in
             triggerEmojiFlood(emoji: "😐")
         }

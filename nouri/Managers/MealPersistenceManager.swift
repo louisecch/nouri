@@ -282,8 +282,11 @@ class MealPersistenceManager: ObservableObject {
                     )
                     
                     // Trigger emoji flood based on health score
-                    if result.nutritionScore >= 0 && result.nutritionScore <= 50 {
-                        // Nutritionally okay (0-50) - show 😐 emoji flood
+                    if result.nutritionScore >= 70 {
+                        // Healthy (70+) - show 🤩 emoji flood
+                        NotificationCenter.default.post(name: NSNotification.Name("HealthyFoodDetected"), object: nil)
+                    } else if result.nutritionScore >= 0 && result.nutritionScore < 70 {
+                        // Nutritionally okay (0-69) - show 😐 emoji flood
                         NotificationCenter.default.post(name: NSNotification.Name("NutritionallyOkayDetected"), object: nil)
                     } else if result.nutritionScore < 0 {
                         // Unhealthy (negative score) - show 🤨 emoji flood
@@ -332,8 +335,11 @@ class MealPersistenceManager: ObservableObject {
                     print("   Food detected: \(result.foodName) - Score: \(result.nutritionScore)")
                     
                     // Trigger emoji flood based on health score
-                    if result.nutritionScore >= 0 && result.nutritionScore <= 50 {
-                        // Nutritionally okay (0-50) - show 😐 emoji flood
+                    if result.nutritionScore >= 70 {
+                        // Healthy (70+) - show 🤩 emoji flood
+                        NotificationCenter.default.post(name: NSNotification.Name("HealthyFoodDetected"), object: nil)
+                    } else if result.nutritionScore >= 0 && result.nutritionScore < 70 {
+                        // Nutritionally okay (0-69) - show 😐 emoji flood
                         NotificationCenter.default.post(name: NSNotification.Name("NutritionallyOkayDetected"), object: nil)
                     } else if result.nutritionScore < 0 {
                         // Unhealthy (negative score) - show 🤨 emoji flood
