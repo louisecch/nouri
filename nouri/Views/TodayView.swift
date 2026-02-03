@@ -12,6 +12,7 @@ struct TodayView: View {
     @State private var selectedMealType: MealType?
     @State private var showingImagePicker = false
     @State private var selectedImage: PlatformImage?
+    @State private var showEmojiFlood = false
     
     private let columns = [
         GridItem(.flexible(), spacing: 16),
@@ -74,6 +75,19 @@ struct TodayView: View {
                     showingImagePicker = true
                 }
             }
+            .overlay(
+                EmojiFloodView(isShowing: $showEmojiFlood)
+            )
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("NutritionallyOkayDetected"))) { _ in
+            triggerEmojiFlood()
+        }
+    }
+    
+    private func triggerEmojiFlood() {
+        showEmojiFlood = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            showEmojiFlood = false
         }
     }
     
@@ -232,6 +246,92 @@ struct MealCardView: View {
         }
         .buttonStyle(.plain)
     }
+}
+
+struct EmojiFloodView: View {
+    @Binding var isShowing: Bool
+    @State private var emojis: [EmojiParticle] = []
+    
+    var body: some View {
+        ZStack {
+            if isShowing {
+                Color.clear
+                    .ignoresSafeArea()
+                
+                ForEach(emojis) { emoji in
+                    Text("😐")
+                        .font(.system(size: emoji.size))
+                        .position(x: emoji.x, y: emoji.y)
+                        .opacity(emoji.opacity)
+                        .animation(.easeOut(duration: emoji.duration), value: emoji.y)
+                }
+            }
+        }
+        .allowsHitTesting(false)
+        .onChange(of: isShowing) { showing in
+            if showing {
+                generateEmojis()
+            } else {
+                emojis.removeAll()
+            }
+        }
+    }
+    
+    private func generateEmojis() {
+        emojis.removeAll()
+        
+        #if canImport(UIKit)
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+        #elseif canImport(AppKit)
+        let screenWidth = NSScreen.main?.frame.width ?? 800
+        let screenHeight = NSScreen.main?.frame.height ?? 600
+        #endif
+        
+        // Generate 50 emojis
+        for i in 0..<50 {
+            let randomX = CGFloat.random(in: 0...screenWidth)
+            let startY = CGFloat.random(in: -200...(-50))
+            let endY = screenHeight + 100
+            let size = CGFloat.random(in: 30...80)
+            let delay = Double(i) * 0.03
+            let duration = Double.random(in: 2.0...3.5)
+            
+            let emoji = EmojiParticle(
+                x: randomX,
+                y: startY,
+                size: size,
+                opacity: 1.0,
+                duration: duration
+            )
+            
+            emojis.append(emoji)
+            
+            // Animate falling
+            let emojiID = emoji.id
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                if let index = emojis.firstIndex(where: { $0.id == emojiID }) {
+                    emojis[index].y = endY
+                    
+                    // Fade out near the end
+                    DispatchQueue.main.asyncAfter(deadline: .now() + duration * 0.7) {
+                        if let fadeIndex = emojis.firstIndex(where: { $0.id == emojiID }) {
+                            emojis[fadeIndex].opacity = 0.0
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct EmojiParticle: Identifiable {
+    let id = UUID()
+    var x: CGFloat
+    var y: CGFloat
+    let size: CGFloat
+    var opacity: Double
+    let duration: Double
 }
 
 #Preview {

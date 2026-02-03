@@ -255,6 +255,11 @@ class MealPersistenceManager: ObservableObject {
                     print("✅ Added meal: \(mealType.displayName)")
                     print("   Food detected: \(result.foodName) (confidence: \(Int(result.confidence * 100))%)")
                     print("   Health score: \(result.nutritionScore) - \(result.details)")
+                    
+                    // Trigger emoji flood for nutritionally okay foods (score 0-50)
+                    if result.nutritionScore >= 0 && result.nutritionScore <= 50 {
+                        NotificationCenter.default.post(name: NSNotification.Name("NutritionallyOkayDetected"), object: nil)
+                    }
                 } else {
                     print("✅ Added meal: \(mealType.displayName) with image: \(imageFileName)")
                 }
@@ -296,6 +301,11 @@ class MealPersistenceManager: ObservableObject {
                 if let result = result {
                     print("✅ Updated meal: \(meal.mealType.displayName)")
                     print("   Food detected: \(result.foodName) - Score: \(result.nutritionScore)")
+                    
+                    // Trigger emoji flood for nutritionally okay foods (score 0-50)
+                    if result.nutritionScore >= 0 && result.nutritionScore <= 50 {
+                        NotificationCenter.default.post(name: NSNotification.Name("NutritionallyOkayDetected"), object: nil)
+                    }
                 } else {
                     print("✅ Updated meal: \(meal.mealType.displayName) with new image: \(imageFileName)")
                 }
