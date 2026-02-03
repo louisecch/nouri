@@ -221,16 +221,9 @@ struct MealCardView: View {
                     
                     if let meal = meal {
                         if let foodName = meal.foodName {
-                            HStack(spacing: 4) {
-                                Text(foodName)
-                                    .font(.caption2)
-                                    .foregroundColor(.secondary)
-                                
-                                if let _ = meal.healthScore {
-                                    Text(meal.healthScoreEmoji)
-                                        .font(.caption2)
-                                }
-                            }
+                            Text(foodName)
+                                .font(.caption2)
+                                .foregroundColor(.secondary)
                         }
                     }
                 }
