@@ -56,12 +56,17 @@ struct SettingsView: View {
                         Text("About Chibo")
                             .font(.headline)
                         
-                        Text("Inspired by 'cibo' (food in Italian) and 'chi' (life energy in Japanese), Chibo helps you embrace the longevity of Japanese dietary wisdom while savoring the joy of great food.")
+                        Text("Inspired by 'cibo' (food in Italian) and 'chi' (life energy in Chinese), Chibo helps you make better food choices without sacrificing joy.")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                             .padding(.bottom, 4)
                         
-                        Text("Track your meals mindfully. Focus on consistency and progress, not perfection.")
+                        Text("Just snap a photo of your meal and Chibo does the rest. Using AI-powered vision, it recognizes what you're eating and provides instant nutritional insights with health scoring.")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .padding(.bottom, 4)
+                        
+                        Text("Track your meals mindfully. Focus on awareness and progress, not perfection.")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
