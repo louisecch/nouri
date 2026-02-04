@@ -52,10 +52,15 @@ struct SettingsView: View {
                 // About Section
                 Section {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("About Nouri")
+                        Text("About Chibo")
                             .font(.headline)
                         
-                        Text("A simple, mindful way to track your daily meals with photos. Focus on consistency and progress, not perfection.")
+                        Text("Inspired by 'cibo' (food in Italian) and 'chi' (life energy in Japanese), Chibo helps you embrace the longevity of Japanese dietary wisdom while savoring the joy of great food.")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .padding(.bottom, 4)
+                        
+                        Text("Track your meals mindfully. Focus on consistency and progress, not perfection.")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
