@@ -81,16 +81,9 @@ struct MotivationView: View {
                 VStack(spacing: 32) {
                     Spacer()
                     
-                    // Icon
-                    Image(systemName: "lightbulb.circle.fill")
-                        .font(.system(size: 80))
-                        .foregroundStyle(
-                            LinearGradient(
-                                colors: [.green, .blue],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
+                    // Animated Panda Icon
+                    AnimatedPandaView(size: 90)
+                        .frame(width: 90, height: 90)
                     
                     // Nutrition Fact
                     VStack(spacing: 16) {
