@@ -15,13 +15,22 @@ struct TodayView: View {
     @State private var showEmojiFlood = false
     @State private var emojiType: String = "😐"  // Can be "😐" or "🤨"
     
-    private let columns = [
-        GridItem(.flexible(), spacing: 16),
-        GridItem(.flexible(), spacing: 16)
-    ]
+    // Adaptive columns based on screen size
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    private var columns: [GridItem] {
+        #if canImport(UIKit)
+        // iPad: 3 columns for regular width, 2 for compact
+        if horizontalSizeClass == .regular {
+            return Array(repeating: GridItem(.flexible(), spacing: 20), count: 3)
+        }
+        #endif
+        // iPhone or fallback: 2 columns
+        return Array(repeating: GridItem(.flexible(), spacing: 16), count: 2)
+    }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     // Header with day and date
@@ -34,11 +43,11 @@ struct TodayView: View {
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
-                    .padding(.horizontal)
+                    .padding(.horizontal, horizontalSizeClass == .regular ? 32 : 16)
                     .padding(.top, 8)
                     
                     // Meal Grid
-                    LazyVGrid(columns: columns, spacing: 16) {
+                    LazyVGrid(columns: columns, spacing: horizontalSizeClass == .regular ? 20 : 16) {
                         ForEach(MealType.allCases.sorted(by: { $0.sortOrder < $1.sortOrder }), id: \.self) { mealType in
                             MealCardView(
                                 mealType: mealType,
@@ -47,9 +56,10 @@ struct TodayView: View {
                             )
                         }
                     }
-                    .padding(.horizontal)
+                    .padding(.horizontal, horizontalSizeClass == .regular ? 32 : 16)
                 }
                 .padding(.bottom, 20)
+                .frame(maxWidth: .infinity)
             }
             .navigationTitle("Today")
             #if canImport(UIKit)
@@ -119,6 +129,17 @@ struct MealCardView: View {
     
     @StateObject private var persistenceManager = MealPersistenceManager.shared
     @State private var isHovering = false
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    // Adaptive card height based on device
+    private var cardHeight: CGFloat {
+        #if canImport(UIKit)
+        if horizontalSizeClass == .regular {
+            return 200  // iPad: larger cards
+        }
+        #endif
+        return 140  // iPhone: standard size
+    }
     
     var body: some View {
         Button(action: {
@@ -226,7 +247,7 @@ struct MealCardView: View {
                         }
                     }
                 }
-                .frame(height: 140)
+                .frame(height: cardHeight)
                 .cornerRadius(12)
                 #if canImport(AppKit)
                 .onHover { hovering in

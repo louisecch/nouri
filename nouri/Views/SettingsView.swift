@@ -10,9 +10,10 @@ import SwiftUI
 struct SettingsView: View {
     @StateObject private var persistenceManager = MealPersistenceManager.shared
     @State private var showingClearDataAlert = false
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 // App Info Section
                 Section {

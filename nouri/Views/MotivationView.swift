@@ -51,9 +51,10 @@ class NutritionFactsService: ObservableObject {
 
 struct MotivationView: View {
     @StateObject private var factsService = NutritionFactsService()
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 // Subtle gradient background
                 #if canImport(UIKit)
@@ -81,9 +82,10 @@ struct MotivationView: View {
                 VStack(spacing: 32) {
                     Spacer()
                     
-                    // Animated Panda Icon
-                    AnimatedPandaView(size: 90)
-                        .frame(width: 90, height: 90)
+                    // Animated Panda Icon - larger on iPad
+                    AnimatedPandaView(size: horizontalSizeClass == .regular ? 120 : 90)
+                        .frame(width: horizontalSizeClass == .regular ? 120 : 90,
+                               height: horizontalSizeClass == .regular ? 120 : 90)
                     
                     // Nutrition Fact
                     VStack(spacing: 16) {
@@ -92,11 +94,11 @@ struct MotivationView: View {
                                 .scaleEffect(1.5)
                         } else {
                             Text(factsService.currentFact)
-                                .font(.title3)
+                                .font(horizontalSizeClass == .regular ? .title2 : .title3)
                                 .fontWeight(.medium)
                                 .multilineTextAlignment(.center)
                                 .foregroundColor(.primary)
-                                .padding(.horizontal, 32)
+                                .padding(.horizontal, horizontalSizeClass == .regular ? 80 : 32)
                                 .transition(.opacity)
                         }
                     }

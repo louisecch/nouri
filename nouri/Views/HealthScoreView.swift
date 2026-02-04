@@ -9,26 +9,48 @@ import SwiftUI
 
 struct HealthScoreView: View {
     @ObservedObject var persistenceManager = MealPersistenceManager.shared
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
-                    // Daily Score Card
-                    ScoreCard(
-                        title: "Today's Score",
-                        score: persistenceManager.getDailyHealthScore(),
-                        icon: "calendar",
-                        gradient: dailyGradient
-                    )
-                    
-                    // Weekly Score Card
-                    ScoreCard(
-                        title: "7-Day Score",
-                        score: persistenceManager.getWeeklyHealthScore(),
-                        icon: "calendar.badge.clock",
-                        gradient: weeklyGradient
-                    )
+                    // Score cards - side by side on iPad
+                    if horizontalSizeClass == .regular {
+                        HStack(spacing: 24) {
+                            ScoreCard(
+                                title: "Today's Score",
+                                score: persistenceManager.getDailyHealthScore(),
+                                icon: "calendar",
+                                gradient: dailyGradient
+                            )
+                            .frame(maxWidth: .infinity)
+                            
+                            ScoreCard(
+                                title: "7-Day Score",
+                                score: persistenceManager.getWeeklyHealthScore(),
+                                icon: "calendar.badge.clock",
+                                gradient: weeklyGradient
+                            )
+                            .frame(maxWidth: .infinity)
+                        }
+                    } else {
+                        // Daily Score Card
+                        ScoreCard(
+                            title: "Today's Score",
+                            score: persistenceManager.getDailyHealthScore(),
+                            icon: "calendar",
+                            gradient: dailyGradient
+                        )
+                        
+                        // Weekly Score Card
+                        ScoreCard(
+                            title: "7-Day Score",
+                            score: persistenceManager.getWeeklyHealthScore(),
+                            icon: "calendar.badge.clock",
+                            gradient: weeklyGradient
+                        )
+                    }
                     
                     // Healthy Score Info
                     HealthyScoreInfoCard()
@@ -39,7 +61,8 @@ struct HealthScoreView: View {
                     // Health Score Guide
                     HealthScoreGuide()
                 }
-                .padding()
+                .padding(horizontalSizeClass == .regular ? 32 : 16)
+                .frame(maxWidth: .infinity)
             }
             .navigationTitle("Health Scores")
             .background(Color(.systemGroupedBackground))
