@@ -1,5 +1,9 @@
 # Chibo - AI-Powered Meal Tracker
 
+Renamed from Nouri as apparently a dozen others have already GPT-ed this name, I came up with the name non-GPT way.
+
+Drawing from cibo (food in Italian 🇮🇹) and chi, the Chinese idea of life energy (qi / 氣), Chibo believes good food should support a long life without feeling like a sacrifice.
+
 Track your meals with photos and get instant AI-powered nutrition insights. Chibo uses OpenAI Vision to identify your food and calculate health scores, making mindful eating effortless.
 
 ## Features
