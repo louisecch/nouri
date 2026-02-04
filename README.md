@@ -1,6 +1,6 @@
-# Nouri - Meal Logging iOS App
+# Chibo - AI-Powered Meal Tracker
 
-A simple, mindful iOS app for tracking daily meals with photos. Built with SwiftUI following Apple Human Interface Guidelines.
+Track your meals with photos and get instant AI-powered nutrition insights. Chibo uses OpenAI Vision to identify your food and calculate health scores, making mindful eating effortless.
 
 ## Features
 
@@ -15,8 +15,9 @@ A simple, mindful iOS app for tracking daily meals with photos. Built with Swift
   - Dinner
   - Snack (Evening)
 - Tap any meal card to add or update a photo from your library
-- **🤖 AI Food Recognition** - Automatically detects food in photos
-- **📊 Health Scoring** - Get nutritional insights for each meal
+- **🤖 AI Food Recognition** - OpenAI Vision automatically identifies your food
+- **📊 Health Scoring** - Instant nutritional insights for each meal
+- **🎉 Fun Animations** - Visual feedback based on food healthiness (🤩 healthy, 😐 okay, 🤨 unhealthy)
 - Clean, minimal design with photo thumbnails or "Add Photo" placeholders
 
 ### 📊 Health Tab
@@ -24,15 +25,16 @@ A simple, mindful iOS app for tracking daily meals with photos. Built with Swift
 - **Daily Health Score** - See your nutrition score for today
 - **7-Day Score** - Track your weekly progress
 - **Meal Breakdown** - View scores for each meal logged today
-- **Scoring Guide** - Learn how different foods are scored
+- **Healthy Score Guide** - Understand what daily scores are considered healthy (200-300 points)
+- **Example Meal Plans** - See how to achieve healthy daily scores
 - Beautiful gradient cards with visual feedback
 - Color-coded scores (green = excellent, blue = good, orange/red = needs improvement)
 
-### 💝 Motivation Tab
+### 💡 Learn Tab
 
-- Daily motivational quotes focused on wellness and nourishment
-- Quote changes daily based on the day of the year
-- Beautiful gradient design with SF Symbols
+- Daily nutrition facts to inspire healthier choices
+- Random facts about food, nutrition, and wellness
+- Beautiful gradient design with panda mascot
 
 ### ⚙️ Settings Tab
 
@@ -78,6 +80,7 @@ A simple, mindful iOS app for tracking daily meals with photos. Built with Swift
 The app includes **AI-powered food recognition** with two options:
 
 ### Option 1: OpenAI Vision API (Recommended)
+
 - **🎯 Highest Accuracy**: GPT-4 Vision excels at food recognition
 - **⚡ Fast**: 1-2 seconds per image
 - **🌍 Comprehensive**: Recognizes foods from all cuisines worldwide
@@ -86,6 +89,7 @@ The app includes **AI-powered food recognition** with two options:
 **Setup:** See [OPENAI_SETUP.md](OPENAI_SETUP.md) for setup guide.
 
 ### Option 2: Local Vision Framework (Free, On-Device)
+
 - **🆓 Completely FREE** - No API needed
 - **🔒 100% Private** - All processing on-device
 - **🚫 No Internet** - Works offline
@@ -138,5 +142,6 @@ Created for personal use. All rights reserved.
 
 ---
 
+**App Name**: Chibo  
 **Version**: 1.0  
 **Bundle ID**: dev.louc.nouri
