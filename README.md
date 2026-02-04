@@ -6,6 +6,8 @@ Chibo takes its name from *cibo*, Italian for food 🇮🇹, and *chi*, the Chin
 
 Just snap a photo of your meal and Chibo does the rest. Using OpenAI-powered vision, it recognizes what you’re eating and turns it into clear, helpful nutrition insights. Now you can make better choices without tracking every calorie!
 
+https://github.com/user-attachments/assets/a184d2d4-465b-4caa-b7e1-76bec1d203ca
+
 ## Features
 
 ### 📱 Today Tab (Home)
