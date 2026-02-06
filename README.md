@@ -2,7 +2,8 @@
 
 Renamed from Nouri as apparently a dozen others have already GPT-ed this name, I came up with the name non-GPT way.
 
-Chibo takes its name from *cibo*, Italian for food 🇮🇹, and *chi*, the Chinese concept of life energy (qi / 氣 🇨🇳). Good food should support a long life without feeling like a sacrifice.
+Chibo takes its name from *cibo*, Italian for food 🇮🇹, and *chi*, the Chinese concept of life energy (qi / 氣 🇨🇳). 
+Good food should support a long life without feeling like a sacrifice.
 
 Just snap a photo of your meal and Chibo does the rest. Using OpenAI-powered vision, it recognizes what you’re eating and turns it into clear, helpful nutrition insights. Now you can make better choices without tracking every calorie!
 
