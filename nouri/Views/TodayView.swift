@@ -67,7 +67,7 @@ struct TodayView: View {
             #endif
             .sheet(isPresented: $showingImagePicker) {
                 ImagePicker(selectedImage: $selectedImage, isPresented: $showingImagePicker)
-                    .padding()
+                    .presentationDetents([.medium])
             }
             .onChange(of: selectedImage) { newImage in
                 if let image = newImage, let mealType = selectedMealType {
