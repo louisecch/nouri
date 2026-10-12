@@ -11,7 +11,7 @@ Just snap a photo of your meal and Chibo does the rest. Using OpenAI-powered vis
 
 ## Features
 
-### 📱 Today Tab (Home)
+### Today Tab (Home)
 
 - Displays current day of week and date
 - 2-column grid layout with 6 fixed meal categories:
@@ -22,9 +22,9 @@ Just snap a photo of your meal and Chibo does the rest. Using OpenAI-powered vis
   - Dinner
   - Snack (Evening)
 - Tap any meal card to add or update a photo from your library
-- **🤖 AI Food Recognition** - OpenAI Vision automatically identifies your food
-- **📊 Health Scoring** - Instant nutritional insights for each meal
-- **🎉 Fun Animations** - Visual feedback based on food healthiness (🤩 healthy, 😐 okay, 🤨 unhealthy)
+- **AI Food Recognition** - OpenAI Vision automatically identifies your food
+- **Health Scoring** - Instant nutritional insights for each meal
+- **Fun Animations** - Visual feedback based on food healthiness (🤩 healthy, 😐 okay, 🤨 unhealthy)
 - Clean, minimal design with photo thumbnails or "Add Photo" placeholders
 
 ### 📊 Health Tab
