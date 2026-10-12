@@ -77,7 +77,7 @@ Just snap a photo of your meal and Chibo does the rest. Using OpenAI-powered vis
 ## Requirements
 
 - **iOS 16.0+** (iPhone & iPad)
-- **macOS 12.0+** (Monterey or later) ✅
+- **macOS 12.0+** (Monterey or later)
 - Xcode 14.2+
 - Swift 5.0+
 - **Cross-Platform**: Works on both iOS and macOS!
