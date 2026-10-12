@@ -27,7 +27,7 @@ Just snap a photo of your meal and Chibo does the rest. Using OpenAI-powered vis
 - **Fun Animations** - Visual feedback based on food healthiness (🤩 healthy, 😐 okay, 🤨 unhealthy)
 - Clean, minimal design with photo thumbnails or "Add Photo" placeholders
 
-### 📊 Health Tab
+### Health Tab
 
 - **Daily Health Score** - See your nutrition score for today
 - **7-Day Score** - Track your weekly progress
@@ -37,13 +37,13 @@ Just snap a photo of your meal and Chibo does the rest. Using OpenAI-powered vis
 - Beautiful gradient cards with visual feedback
 - Color-coded scores (green = excellent, blue = good, orange/red = needs improvement)
 
-### 💡 Learn Tab
+### Learn Tab
 
 - Daily nutrition facts to inspire healthier choices
 - Random facts about food, nutrition, and wellness
 - Beautiful gradient design with panda mascot
 
-### ⚙️ Settings Tab
+### Settings Tab
 
 - View app information and meal statistics
 - Clear all data option (with confirmation alert)
